@@ -5,38 +5,17 @@ using namespace std;
 // } Driver Code Ends
 
 class Solution {
-    
-    //Time Complexity => O(2^n)
-    //Space Complexity => O(n) -> due to recursive call stack
-    int solveRec(string& str1, string& str2, int i, int j) {
-        if(i == str1.length())return 0;
-        if(j == str2.length())return 0;
-        
-        int ans = 0;
-        if(str1[i] == str2[j] && i != j) {
-            ans = 1 + solveRec(str1, str2, i+1, j+1);
-        } else {
-            ans = max(solveRec(str1, str2, i, j+1), solveRec(str1, str2, i+1, j));
-        }
-        return ans;
-    }
-    
     //Time Complexity => O(n^2)
     //Space Complexity => O(n^2)
-    int solveMem(string& str1, string& str2, int i, int j, vector<vector<int>>& dp) {
-        if(i == str1.length())return 0;
-        if(j == str2.length())return 0;
-        
+    int solvememo(string& str1, string& str2, int i, int j,vector<vector<int>>& dp){//self
+        if(i==str1.length() || j==str2.length()) return 0;
         if(dp[i][j] != -1)
             return dp[i][j];
-            
-        int ans = 0;
-        if(str1[i] == str2[j] && i != j) {
-            ans = 1 + solveMem(str1, str2, i+1, j+1, dp);
-        } else {
-            ans = max(solveMem(str1, str2, i, j+1, dp), solveMem(str1, str2, i+1, j, dp));
+        int ans;
+        if(str1[i]==str2[j] && i!=j) ans=1+solvememo(str1,str2,i+1,j+1,dp);
+        else{
+             ans=max(solvememo(str1,str2,i,j+1,dp), solvememo(str1,str2,i+1,j,dp));
         }
-        
         return dp[i][j] = ans;
     }
     
@@ -85,13 +64,10 @@ class Solution {
     
 	public:
 		int LongestRepeatingSubsequence(string str){
-		  //   //Recursive -> TLE
-		  //  return solveRec(str, str, 0, 0);
-		  
-		  //// Memoization
-		  //int n = str.length();
-		  //vector<vector<int>>dp(n+1, vector<int>(n+1, -1));
-		  //return solveMem(str, str, 0, 0, dp);
+		  // Memoization
+		  int n = str.length();
+		  vector<vector<int>>dp(n+1, vector<int>(n+1, -1));
+		  return solvememo(str, str, 0, 0, dp);
 		  
 		  
 		  //// Tabulation
@@ -99,7 +75,7 @@ class Solution {
 
 		  
 		  // Space Optimization
-		  return solveSO(str, str);
+		  //return solveSO(str, str);
 		  
 		}
 
