@@ -1,13 +1,13 @@
 class Solution {
 public:
-    int solve(vector<int>& satisfaction, int index,int time,vector<vector<int>>& memo){
+    int solve(vector<int>& satisfaction, int index,int time,vector<vector<int>>& memo){//done
         if(index==satisfaction.size()) return 0;
         if(memo[index][time]!=-1) return memo[index][time];
         int include=satisfaction[index]*(time+1) + solve(satisfaction,index+1,time  +1,memo);
         int exclude=solve(satisfaction,index+1,time,memo);
         return memo[index][time]=max(include,exclude);
     }
-    int solvetab(vector<int>& satisfaction){
+    int solvetab(vector<int>& satisfaction){//done//weight val like prob knapsack
         int n=satisfaction.size();
         vector<vector<int>> memo(n+1,vector<int> (n+1,0));
         for(int i=1;i<=n;i++){
@@ -15,7 +15,7 @@ public:
                 if(j<=i-1){
                     memo[i][j]=max(memo[i-1][j-1]+j*satisfaction[i-1],memo[i-1][j]);
                 }
-                else{
+                else{//j>=i have to select
                     memo[i][j]=memo[i-1][j-1]+j*satisfaction[i-1];
                 }
             }
