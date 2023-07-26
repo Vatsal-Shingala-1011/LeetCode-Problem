@@ -8,7 +8,6 @@ public:
         totalTime += (double)dist[n - 1] / mid;
         return totalTime <= hour;
     }
-
     int minSpeedOnTime(vector<int>& dist, double hour) {
         int n=dist.size();
         int t=hour;
