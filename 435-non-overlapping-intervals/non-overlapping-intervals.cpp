@@ -1,29 +1,19 @@
+bool comparator(const std::vector<int>& a, const std::vector<int>& b) {
+    return a[1] < b[1];  // Compare based on the second column (index 1)
+}
 class Solution { //daily challenge submit without solve
 public:
+
     int eraseOverlapIntervals(vector<vector<int>>& v) {
-        ios_base::sync_with_stdio(false);
-        cin.tie(NULL);
-        sort(v.begin(),v.end());
-        int i = 0;
-        int j = 1;
-        int ans = 0;
-        while(j < v.size())
-        {
-            if(v[i][1] <= v[j][0])
-            {
-                i = j;
-                j++;
-            }
-            else if(v[i][1]<=v[j][1])    // [1,3] [2,4]
-            {
-                ans++;
-                j++;
-            }
-            else if(v[i][1] > v[j][1]) // [1,3] [1,2] we will remove larger interval
-            {
-                ans++;
-                i = j;
-                j++;
+        int n=v.size();
+        if(n<=1) return 0;
+        sort(v.begin(),v.end(),comparator);
+        int ans=0;
+        pair<int,int> prev={v[0][0],v[0][1]};
+        for(int i=1;i<n;i++){
+            if(v[i][0]<prev.second) ans++;
+            else{
+                prev={v[i][0],v[i][1]};
             }
         }
         return ans;
