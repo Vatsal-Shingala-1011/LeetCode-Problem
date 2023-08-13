@@ -2,14 +2,12 @@ class Solution {
 public:
     int solve(vector<int>& nums, int target)
     {
-        if(target==0)
-            return 1;
-        if(target<0)
-            return 0;
+        if(target==0)return 1;
+        if(target<0) return 0;
         int ans=0;
         int size=nums.size();
         for(int i=0;i<size;i++){
-            ans=1+solve(nums,target-nums[i]);
+            ans+=solve(nums,target-nums[i]);
         }
         return ans;
     }
