@@ -1,7 +1,8 @@
-class Solution {//not done
+class Solution {//easy done
 private:
      double help(int A, int B, unordered_map<int, unordered_map<int, double>> &dp){
-        if(A <= 0) return B <= 0 ? 0.5 : 1.0;
+        if(A <= 0 && B<=0) return 0.5;
+        if(A <= 0) return 1;
         if(B <= 0) return 0.0;
         if(dp.find(A) != dp.end() && dp.at(A).find(B) != dp.at(A).end())
             return dp.at(A).at(B);
