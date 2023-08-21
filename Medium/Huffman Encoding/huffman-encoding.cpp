@@ -4,6 +4,7 @@ using namespace std;
 
 // } Driver Code Ends
 
+
 class Node{
     public:
     int data;
@@ -50,9 +51,9 @@ class Solution
 		        newNode->right=right;
 		        pq.push(newNode);
 		    }
-		    Node*root=pq.top();
 		    vector<string> ans;
 		    string temp="";
+		    Node* root=pq.top();
 		    traverse(root,ans,temp);
 		    return ans;
 		}
