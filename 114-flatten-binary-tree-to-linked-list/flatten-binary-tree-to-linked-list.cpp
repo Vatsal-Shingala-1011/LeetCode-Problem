@@ -17,7 +17,7 @@ public:
         TreeNode* curr=root;
         while(curr!=NULL)
         {
-            if(curr->left){
+            if(curr->left!=NULL){
                 TreeNode* predecessor=curr->left;
                 while(predecessor->right){//not null
                     predecessor=predecessor->right;
