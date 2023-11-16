@@ -1,16 +1,12 @@
 class Solution {
 private:
     void solve(vector<vector<int>>& ans,vector<int> nums,int index){
-        int size=nums.size();
-        if(index>=size){
+        if(index>=nums.size()){
             ans.push_back(nums);
-            return;
         }
-        for(int i=index;i<size;i++)
-        {
+        for(int i=index;i<nums.size();i++){
             swap(nums[index],nums[i]);
             solve(ans,nums,index+1);
-            //backtrack
             swap(nums[index],nums[i]);
         }
     }
