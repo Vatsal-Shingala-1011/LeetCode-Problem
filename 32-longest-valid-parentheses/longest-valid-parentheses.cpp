@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int longestValidParentheses(string s) {
+    int longestValidParentheses(string s) { //self
         int n = s.length();
         int o = 0, c = 0, ans = 0, temp = 0;
         // Left to right pass
